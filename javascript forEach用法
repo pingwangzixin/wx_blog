@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tjson=[
+            {"name":"张三"},
+            {"name":"李四"},
+            {"name":"王五"}
+        ]
+    
+        tjson.forEach(function(e){
+            document.write(e.name+'<br>')
+        })
+    </script>
+</body>
+</html>
+页面输出
+
+张三
+李四
+王五
