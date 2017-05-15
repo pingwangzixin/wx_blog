@@ -1,0 +1,30 @@
+自动平均划分每个小模块，使其一行显示
+
+遇到上面这种布局，一般会用float来做，或者把每个li设置成display:inline-block;来做，并且都要设置给他们设置一个宽度，而且最痛苦的是5个li如果你设置width:20%;他们一定会掉下来，如果li都设置成display:table-cell；就不会出现这种情况，即使不设置宽度他们也会在一行显示，你在加多一行他也不会掉下来，依旧会在一样显示。
+
+代码如下：
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{box-sizing:border-box;}
+        .content{display: table;border:1px solid #ccc;padding:15px;width:1000px;}
+        .content ul{display: table;width: 100%;border-right:1px solid #798;}
+        .content ul li{display: table-cell;border:1px solid #798;text-align: center;border-right:none;line-height: 100px;}
+    </style>
+</head>
+<body>
+    <div class="content">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>
