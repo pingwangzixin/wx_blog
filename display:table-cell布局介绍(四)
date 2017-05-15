@@ -1,0 +1,27 @@
+两box实现等高对齐
+
+代码如下
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        .content{display: table;border: 1px solid #ccc;padding:20px;margin:10px auto;width:800px;}
+        .img-box{width:100px;border:1px solid #f00;display: table-cell;vertical-align: middle;text-align: center;background:#9c0;}
+        .text-box{margin-left: 20px;border: 1px solid #888;padding:10px;}
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="img-box">
+            <img src="http://jsfiddle.net/img/logo@2x.png" width="70">
+        </div>
+        <div class="text-box">
+            <span>table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......table-cell 此元素会作为一个表格单元格显示......</span>
+        </div>
+    </div>
+</body>
+</html>
