@@ -1,0 +1,6 @@
+1. 安装Typescript
+
+npm install -g typescript
+2.编译指令：
+
+tsc module system main.ts
