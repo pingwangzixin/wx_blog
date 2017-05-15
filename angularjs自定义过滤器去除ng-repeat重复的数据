@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.26/angular.min.js"></script>
+</head>
+<body ng-controller="test">
+  <p style="color:#f00">去重之前:</p>
+  <ul>
+      <li ng-repeat="n in news"><span style="margin-right:20px">{{n.time}}</span><span>{{n.title}}</span></li>
+  </ul>
+   <p style="color:#f00">去重之后：</p>
+    <ul>
+        <li ng-repeat="n in news | unique:'time'"><span style="margin-right:20px">{{n.time}}</span><span>{{n.title}}</span></li>
+    </ul>
+    
+    <script>
+        var app=angular.module("app",[])
+        .controller("test",function($scope,$http){
+            $http.get('./news.json').success(function(res){
+                $scope.news=res
+            })
+        })
+        //自定义过滤器
+        app.filter("unique",function(){
+            return function(collection,keyname){
+                var output=[],keys=[];
+                angular.forEach(collection,function(item){
+                    var key=item[keyname]
+                    if(keys.indexOf(key)===-1){
+                        keys.push(key)
+                        output.push(item)
+                    }
+                })
+                return output;
+            }
+        })
+    </script>
+</body>
+</html>
