@@ -33,3 +33,25 @@ function foo2()
  };
 }
 所以第二个函数是返回 undefined。
+
+
+题目：有这样一个URL：http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e，请写一段JS程序提取URL中的各个GET参数(参数名和参数个数不确定)，将其按key-value形式返回到一个json结构中，如{a:’1′, b:’2′, c:”, d:’xxx’, e:undefined}。
+
+解答：
+
+var result={};
+function getUrl(url){
+var temp=url.split('?')[1].split('&');
+console.log(temp)
+for(i in temp){
+    var s=temp[i].split('=');
+    console.log(s)
+    console.log(s[0])
+    console.log(s[1])
+    result[s[0]]=s[1]
+}
+return result
+}
+
+getUrl('http://item.taobao.com/item.htm?a=1&b=2&c=&d=xxx&e')
+console.log(result)
