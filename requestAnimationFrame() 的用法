@@ -1,0 +1,60 @@
+如果你想做逐帧动画的时候，你应该用这个方法。这就要求你的动画函数执行会先于浏览器重绘动作。通常来说，被调用的频率是每秒60次，但是一般会遵循W3C标准规定的频率。如果是后台标签页面，重绘频率则会大大降低。
+
+实例一：requestAnimationFrame实现一个进度条
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>requestAnimationFrame实现一个进度条</title>
+    <style>
+        div{width:10px;height:10px;background:#000;}
+    </style>
+</head>
+<body>
+   <div id="test"></div>
+    <script>
+       var test=document.getElementById("test")
+       var a=0;
+       function add(){
+           a++
+           console.log(a)
+           test.style.width=a+'px'
+           if(a<500){
+               requestAnimationFrame(add)
+           }
+       }
+       requestAnimationFrame(add)
+    </script>
+</body>
+</html>
+实例二：requestAnimationFrame实现数字增加动画
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字增加动画</title>
+    <style>
+        div{font-size:20px}
+    </style>
+</head>
+<body>
+   <div id="test">0</div>
+    <script>
+       var test=document.getElementById("test")
+       var a=0;
+       function add(){
+           a++
+           console.log(a)
+           test.innerHTML=a
+           
+           if(a<=1000){
+               requestAnimationFrame(add)
+           }
+       }
+        
+        requestAnimationFrame(add)
+    </script>
+</body>
+</html>
