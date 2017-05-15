@@ -1,0 +1,14 @@
+AdonisJs是一个基于Node.js的真正的MVC框架. 它将Web编程的所有无聊部分封装起来，并为您提供了一个漂亮和干净的API来处理。
+
+官方是这么说的：
+
+AdonisJs是一个可以使用较少代码编写Web应用程序的 Node.js MVC框架。我们专注于编写优雅的代码，并成为Node社区中最稳定的框架之一。与其他框架不同，AdonisJs配备了一堆经过测试的模块，可以让您的开发体验愉快。 以下是核心功能列表：
+利用强大的 ORM 进行安全的SQL查询。
+基于API和Session的认证系统。
+通过SMTP或Web服务（Mailgun，Mandrill等）轻松发送电子邮件
+验证和过滤用户的所有输入。
+强调安全。
+可扩展的应用程序布局。
+详细的文档可以参考中文API https://adonis-china.org
+
+git仓库地址：https://github.com/adonisjs/adonis-framework
