@@ -1,0 +1,25 @@
+方法一：
+    <input type="file" id="ofile"><label for="ofile">上传</label>
+    <script>
+        var ofile=document.getElementById('ofile')
+        ofile.onchange=function(e){
+            var name=e.currentTarget.files[0].name
+            alert(name)
+        }
+    </script>
+方法二：
+    var filedoc=document.getElementById('filedoc');
+    filedoc.onchange=function(){
+	var filename=this.value
+	var name=filename.split('\\')
+	var myfile=name[name.length-1];
+    }
+方法三：
+    <script>
+        var ofile=document.getElementById('ofile')
+        ofile.onchange=function(e){
+            var initname=ofile.value;
+            var name=initname.lastIndexOf('\\')
+            var names=initname.substring(name+1)
+        }
+    </script>
