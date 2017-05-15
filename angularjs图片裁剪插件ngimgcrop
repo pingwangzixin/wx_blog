@@ -1,0 +1,77 @@
+最近在项目中需要用到用户上传头像裁剪的功能，angularjs下有一款插件——ngimgcrop比较适合，于是就用了这个。
+
+1.安装插件
+
+bower install ngImgCrop
+2.引入插件
+
+<script src="ng-img-crop.js"></script>
+<link rel="stylesheet" type="text/css" href="ng-img-crop.css">
+3.添加依赖
+
+var app = angular.module('myApp', ['ngImgCrop']);
+4.用法
+
+<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+5.参数
+
+<img-crop
+    image="{string}"                 //需要截取的图片变量名
+    result-image="{string}"          //截取后所赋值的变量名
+   [change-on-fly="{boolean}"]       //是否实时更新用户截取图像的预览,若为否,则会等用户停止动作后更新预览的图像
+   [area-type="{circle|square}"]     //截取图像框的形状(圆形或正方形)
+   [area-min-size="{number}"]        //截取图像框的最小面积
+   [result-image-size="{number}"]    //截取后图像的大小
+   [result-image-format="{string}"]  //截取后图像的格式
+   [result-image-quality="{number}"] //截取后图像的质量
+   [on-change="{expression}"]        
+   [on-load-begin="{expression"]
+   [on-load-done="{expression"]
+   [on-load-error="{expression"]
+></img-crop>
+6.Demo
+
+<html>
+<head>
+  <script src="angular.js"></script>
+  <script src="ng-img-crop.js"></script>
+  <link rel="stylesheet" type="text/css" href="ng-img-crop.css">
+  <style>
+    .cropArea {
+      background: #E4E4E4;
+      overflow: hidden;
+      width:500px;
+      height:350px;
+    }
+  </style>
+  <script>
+    angular.module('app', ['ngImgCrop'])
+      .controller('Ctrl', function($scope) {
+        $scope.myImage='';
+        $scope.myCroppedImage='';
+
+        var handleFileSelect=function(evt) {
+          var file=evt.currentTarget.files[0];
+          var reader = new FileReader();
+          reader.onload = function (evt) {
+            $scope.$apply(function($scope){
+              $scope.myImage=evt.target.result;
+            });
+          };
+          reader.readAsDataURL(file);
+        };
+        angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+      });
+  </script>
+</head>
+<body ng-app="app" ng-controller="Ctrl">
+  <div>Select an image file: <input type="file" id="fileInput" /></div>
+  <div class="cropArea">
+    <img-crop image="myImage" result-image="myCroppedImage"></img-crop> 
+    <!-- 截取图片框  -->
+  </div>
+  <div>Cropped Image:</div>
+  <div><img ng-src="{{myCroppedImage}}" /></div>
+  <!-- 预览图片框  -->
+</body>
+</html>
