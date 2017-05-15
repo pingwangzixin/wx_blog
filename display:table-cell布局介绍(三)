@@ -1,0 +1,25 @@
+图片垂直居中于元素
+
+有时候我们需要让图片垂直水平都居中于某个元素，用常规写法比较复杂，但用table-cell相对简单
+
+代码如下：
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        .content{width:500px;border:1px solid #ccc;display: table;margin: 10px auto;height:150px;padding:20px;}
+        .img-box{background:#c90;height:150px;display: table-cell;vertical-align: middle;text-align: center;}
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="img-box">
+            <img src="http://jsfiddle.net/img/logo@2x.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
