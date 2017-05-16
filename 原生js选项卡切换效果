@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .content{width:360px;height:26px;display: table;}
+        ul li{width:120px;height:26px;line-height: 26px;border-top:1px solid #5093e1;border-bottom:1px solid #5093e1;border-left:1px solid #5093e1;color:#5093e1;display: table-cell;text-align: center;}
+        ul li:first-child{border-top-left-radius:5px;border-bottom-left-radius: 5px;}
+        ul li:last-child{border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-left:none;border-left:1px solid #5093e1;border-right:1px solid #5093e1;}
+        ul li.active{background:#5093e1;color:#fff;}
+    </style>
+</head>
+<body>
+    <ul class="content">
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+    </ul>
+    
+    <script>
+        var li=document.getElementsByTagName("li");
+        
+        for(var i=0;i<li.length;i++){
+            li[i].onclick=function(){
+                for(var j=0;j<li.length;j++){
+                    li[j].className=""
+                }
+                
+               this.className="active"
+            }
+        }
+    </script>
+</body>
+</html>
