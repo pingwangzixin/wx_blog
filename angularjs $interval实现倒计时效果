@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>angularjs 倒计时</title>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.26/angular.min.js"></script>
+</head>
+<body ng-controller="test">
+    倒计时：<span ng-bind="time"></span>
+</body>
+
+<script>
+    var app=angular.module("app",[]);
+    app.controller("test",function($scope,$interval){
+       $scope.time=10;
+        var timer=$interval(function(){
+            if($scope.time==0){
+                $interval.cancel(timer);
+            }else{
+                $scope.time--
+            }
+        },1000)
+    })
+</script>
+</html>
