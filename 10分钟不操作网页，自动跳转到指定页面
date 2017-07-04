@@ -1,0 +1,18 @@
+在项目中有一个需求是10分钟不操作网页，自动跳转到首页，用了下面的方法可以实现：
+
+var x;
+window.onload = init;
+
+function init() { //设置，页面载入完毕之后，5秒不进行页面操作就会跳转	
+    x = setTimeout("location.href = \'./pingbao.html'",600000); 
+    document.onmousemove = moved;
+    document.onkeydown = moved;
+    document.onmousedown = moved;
+    document.ontouchstart = moved;
+    document.ontouchmove = moved;
+    document.ontouchend = moved;
+}
+
+function moved() { //操作了，取消页面跳转	
+    clearTimeout(x); //从现在开始重新计时，如果到了5秒还是要跳转	
+    x = setTimeout("location.href = \'./pingbao.html'", 600000);
