@@ -1,0 +1,60 @@
+
+html结构：
+
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</html>
+方法一：
+
+        .parent{
+            width:600px;
+            height:500px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            background:#ccc;
+        }
+        
+        .child{
+            width:200px;
+            height:200px;
+            background:#09c;
+            display: inline-block;
+        }
+方法二：
+
+        .parent{
+            width:600px;
+            height:500px;
+            background:#ccc;
+            position: relative;
+        }
+        
+        .child{
+            width:200px;
+            height:200px;
+            background:#09c;
+            position: absolute;
+            left: 0;
+            top:0;
+            right:0;
+            bottom:0;
+            margin:auto;
+        }
+方法三：
+
+        .parent{
+            width:600px;
+            height:500px;
+            background:#ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .child{
+            width:200px;
+            height:200px;
+            background:#09c;
+        }
