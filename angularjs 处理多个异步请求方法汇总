@@ -1,0 +1,50 @@
+在实际业务中经常需要等待几个请求完成后再进行下一步操作。但angularjs中$http不支持同步的请求。
+解决方法一：
+复制代码 代码如下:
+
+$http.get('url1').success(function (d1) {
+        $http.get('url2').success(function (d2) {
+            //处理逻辑
+        });
+    });
+解决方法二：
+then中的方法会按顺序执行。
+复制代码 代码如下:
+
+var app = angular.module('app',[]);
+app.controller('promiseControl',function($scope,$q,$http) {
+    function getJson(url){
+        var deferred = $q.defer();
+        $http.get(url)
+            .success(function(d){
+                d = parseInt(d);
+                console.log(d);
+                deferred.resolve(d);
+            });
+        return deferred.promise;
+    }
+    getJson('json1.txt').then(function(){
+        return getJson('json2.txt');
+    }).then(function(){
+        return getJson('json1.txt');
+    }).then(function(){
+        return getJson('json2.txt');
+    }).then(function(d){
+        console.log('end');
+    });
+});
+解决方法三：
+$q.all方法第一个参数可以是数组(对象)。在第一参数中内容都执行完后就会执行then中方法。第一个参数的方法的所有返回值会以数组(对象)的形式传入。
+复制代码 代码如下:
+
+var app = angular.module('app',[]);
+app.controller('promiseControl',function($scope,$q,$http) {
+    $q.all({first: $http.get('json1.txt'),second: $http.get('json2.txt')}).then(function(arr){
+        console.log(arr);
+        angular.forEach(arr,function(d){
+            console.log(d);
+            console.log(d.data);
+        })
+    });
+});
+$q的详细使用方法网上的有很多教程。我也是刚接触。讲不好，不敢乱讲。上面的代码是我按我的理解写的，经过了测试没有问题。
