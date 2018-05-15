@@ -1,0 +1,56 @@
+app.directive("selectGrade", function ($http) {
+        return {
+            restrict: 'E'
+            , replace: true
+            , templateUrl: "selectgrade.html"
+            ,scope:{
+                schoolId:'=',
+                selecttype:'='
+            }
+            , link: function (scope, element) {
+                scope.selectnianji=false;
+                scope.mapFocus=function(){
+                    scope.selectnianji=true;
+                }
+                scope.p = "年级";
+                scope.c = "班级";
+                //根据学校id获取年级
+                $http.post(requireIp + '/ea/eaGrade/findGradeInfoByOid', {
+                        officeId: "office_cc91360e35494c31b9a4dbccee487a34"
+                    }).success(function (res) {
+                        if (res.ret == 200) {
+                            scope.province = res.data;
+                        }
+                    })
+                    /* 请求其他数据*/
+                scope.set = {
+                    //处理年级
+                    p: function (p) {
+                        scope.c = "班级";
+                        scope.districts = null;
+                        scope.p = p.name; //给省份复制
+                        scope.provinceId = p.id; /*获取id*/
+                        $http.post(requireIp + '/ea/eaClass/findClassInfoByGid', {
+                            gradeId: scope.provinceId
+                        }).success(function (res) {
+                            if (res.ret == 200) {
+                                scope.citys = res.data;
+                                scope.gradName=p.name
+                                scope.scid=p.name
+                            }
+                        })
+                    }, //处理班级
+                    c: function (c) {
+                        scope.scid=scope.gradName;
+                        scope.districts = null;
+                        scope.c = c.name+'班';
+                        scope.cityId = c.id;
+                        scope.scid=scope.scid+c.name+"班";
+                        scope.selecttype(scope.scid);
+                        scope.selectnianji=false;
+                    }
+                };
+            }
+        }
+    });
+demo在线演示http://www.h5wx.cn/demo/angularjs/liandong/index.html
